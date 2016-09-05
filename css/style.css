@@ -36,8 +36,9 @@ body {
   justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap; }
-  #screen p {
-    font-size: 2rem; }
+  #screen h2 {
+    font-size: 2rem;
+    margin: 0; }
 
 #btn-ctn {
   width: 90%;
