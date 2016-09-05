@@ -25,8 +25,9 @@ var times = grab('times');
 var divided = grab('divided');
 var equals = grab('equals');
 
-// Create variable for calc screen
-var screen = grab('screen');
+// Create variables for calc screen
+var calc_screen = grab('screen');
+var btn_clear = grab('clear');
 
 
 
@@ -52,6 +53,9 @@ click(times);
 click(divided);
 click(equals);
 
+// Add click event for clear button
+click(btn_clear);
+
 
 
 
@@ -60,6 +64,11 @@ function click(btn) {
     // Calculate values on screen if equal sign pressed
     if ( btn.id === 'equals' ) {
         btn.addEventListener( 'click',  function() { calculate() } );
+    }
+    // Clear screen and calc array
+    else if (btn.id === 'clear') {
+        console.log('clear btn pressed');
+        btn.addEventListener( 'click', function() { clearOut() } );
     }
     // Simply add values to screen if numbers or operators
     else {
@@ -75,11 +84,11 @@ function add_to_screen(btn) {
     // If btn is an operation, put space around its symbol for calc screen
     if ( btn.classList.contains('opr') ) {
         var added_space_html = btn.innerHTML.replace(/\s/g, '&nbsp;&nbsp;');
-        screen.innerHTML += added_space_html;
+        calc_screen.innerHTML += added_space_html;
     }
     // Otherwise, no spacing
     else {
-        screen.innerHTML += btn.innerHTML;
+        calc_screen.innerHTML += btn.innerHTML;
     }
 
     add_to_calc(btn);
@@ -113,6 +122,17 @@ function calculate() {
     console.log(answer);
 }
 
+
+function clearOut() {
+    console.log('clearOut ran');
+
+    // Empty calc array
+    calc = [];
+
+    // Screen shows cleared message for 1 second, then empties
+    calc_screen.innerHTML = '<h2> Cleared </h2>';
+    setTimeout( function(){ calc_screen.innerHTML = '' }, 1000 );
+}
 
 
 

@@ -79,6 +79,7 @@
             font-size: 2rem;
             margin: 0;
         }
+
     }
 
     #btn-ctn {
@@ -127,6 +128,26 @@
 
         &:hover {
             background: rgba(255,255,255,0.8);
+            color: black;
+        }
+    }
+
+    #clear {
+        margin-right: auto;
+        align-self: center;
+        @include round;
+        background: black;
+
+        @include perfect-center-items;
+        padding: 10px 15px;
+        color: white;
+
+        p {
+            margin: 0;
+        }
+
+        &:hover {
+            background: white;
             color: black;
         }
     }

@@ -78,4 +78,19 @@ body {
     background: rgba(255, 255, 255, 0.8);
     color: black; }
 
+#clear {
+  margin-right: auto;
+  align-self: center;
+  border-radius: 2rem;
+  background: black;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  color: white; }
+  #clear p {
+    margin: 0; }
+  #clear:hover {
+    background: white;
+    color: black; }
+
 /*# sourceMappingURL=style.css.map */
