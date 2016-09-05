@@ -17,6 +17,7 @@ var btn_7 = grab('seven');
 var btn_8 = grab('eight');
 var btn_9 = grab('nine');
 var btn_0 = grab('zero');
+var btn_point = grab('point');
 
 // Create variables for operation butttons
 var plus = grab('plus');
@@ -48,6 +49,9 @@ for (var i=0; i < 10; i++) {
     click( eval(specified_btn) );
 }
 
+// Add click event for decimal point
+click(btn_point);
+
 // Add click event for operation buttons
 click(plus);
 click(minus);
@@ -61,9 +65,11 @@ click(clear_history);
 
 
 
-
 /* Main Functions */
+
+// Add Click event listeners to buttons
 function click(btn) {
+
     // Calculate values on screen if equal sign pressed
     if ( btn.id === 'equals' ) {
         btn.addEventListener( 'click',  function() { calculate() } );
@@ -78,14 +84,41 @@ function click(btn) {
     }
     // Simply add values to screen if numbers or operators
     else {
-        btn.addEventListener( 'click',  function() { add_to_screen(btn) } );
+        btn.addEventListener( 'click',  function() { add_to_calc(btn) } );
     }
 }
 
 
-function add_to_screen(btn) {
+
+function add_to_calc(btn) {
+    // Erase previous numbers so only current equation shown
+    var lastValue = buttons_pressed[buttons_pressed.length - 1]
+
+    if (lastValue === 'equalsAnswer') {
+        calc_screen.innerHTML = '';
+    }
+
     // Trim HTML because outside space and line breaks in markup will appear
     btn.innerHTML = btn.innerHTML.trim();
+
+    // Strip btn html to its value
+    // HTML Format:<h2> ? </h2>
+    var btn_value = btn.innerHTML.slice(5,6);
+
+    // Add value to calc array
+    calc.push(btn_value);
+    console.log('calc: ' + calc);
+
+    // Add value to button history array
+    buttons_pressed.push(btn_value);
+    console.log('history: ' + buttons_pressed);
+
+    add_to_screen(btn);
+}
+
+
+
+function add_to_screen(btn) {
 
     // If btn is an operation, put space around its symbol for calc screen
     if ( btn.classList.contains('opr') ) {
@@ -97,29 +130,22 @@ function add_to_screen(btn) {
         calc_screen.innerHTML += btn.innerHTML;
     }
 
-    add_to_calc(btn);
 }
 
-
-function add_to_calc(btn) {
-    // Strip btn html to its value
-    // HTML Format:<h2> ? </h2>
-    var btn_value = btn.innerHTML.slice(5,6);
-
-    // Add value to calc array
-    calc.push(btn_value);
-    console.log(calc);
-}
 
 
 function calculate() {
     // Join calc array to string and find answer
     var answer = eval( calc.join('') );
-    console.log(answer);
+    console.log( answer );
 
     // Show answer on calc screen
     calc_screen.innerHTML = '<h2> ' + answer + ' </h2>';
 
+    // Add equal to history
+    buttons_pressed.push('equalsAnswer');
+
+    // Empty calc
     calc = [];
     console.log('calc emptied');
 }
@@ -130,6 +156,9 @@ function clear_the_screen() {
 
     // Empty calc array
     calc = [];
+
+    // Add clear to history
+    buttons_pressed.push('clear');
 
     // Screen shows cleared message for 1 second, then empties
     calc_screen.innerHTML = '<h2> Cleared </h2>';
