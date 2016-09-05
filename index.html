@@ -2,24 +2,32 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link rel="stylesheet" href="css/style.css" />
+
+        <title> Calculator </title>
+
     </head>
 
 
     <body>
 
-        <div id="calc-body">
+        <div id="calc-body" class="column">
             <h1> Calculator </h1>
 
             <div id="screen">
                 <!-- Typed symbols and calculated results will go here -->
+                <p>
+                     Results
+                </p>
             </div>
 
             <!-- Interactive buttons container -->
             <div id="btn-ctn">
 
                 <!-- Container for numbers -->
-                <div id="num-ctn">
+                <div id="num-ctn" class="column">
 
                      <!-- 1st row of numbers -->
                      <div class="row">
@@ -71,7 +79,7 @@
 
 
                 <!-- Container for Operations -->
-                <div id="opr-ctn">
+                <div id="opr-ctn" class="column">
 
                     <div class="btn">
                         <h2> + </h2>
