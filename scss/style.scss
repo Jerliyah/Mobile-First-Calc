@@ -84,7 +84,7 @@
 
     #btn-ctn {
         width: 90%;
-        padding: 1rem;
+        padding: 1rem 0;
         justify-content: space-around;
     }
 
@@ -132,8 +132,8 @@
         }
     }
 
-    #clear {
-        margin-right: auto;
+    .clear {
+        max-width: 45%;
         align-self: center;
         @include round;
         background: black;
@@ -144,10 +144,15 @@
 
         p {
             margin: 0;
+            line-height: 80%;
         }
 
         &:hover {
             background: white;
             color: black;
+        }
+
+        &:last-child {
+            margin-right: 1rem;
         }
     }

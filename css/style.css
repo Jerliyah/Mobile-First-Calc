@@ -42,7 +42,7 @@ body {
 
 #btn-ctn {
   width: 90%;
-  padding: 1rem;
+  padding: 1rem 0;
   justify-content: space-around; }
 
 #num-ctn {
@@ -78,8 +78,8 @@ body {
     background: rgba(255, 255, 255, 0.8);
     color: black; }
 
-#clear {
-  margin-right: auto;
+.clear {
+  max-width: 45%;
   align-self: center;
   border-radius: 2rem;
   background: black;
@@ -87,10 +87,13 @@ body {
   align-items: center;
   padding: 10px 15px;
   color: white; }
-  #clear p {
-    margin: 0; }
-  #clear:hover {
+  .clear p {
+    margin: 0;
+    line-height: 80%; }
+  .clear:hover {
     background: white;
     color: black; }
+  .clear:last-child {
+    margin-right: 1rem; }
 
 /*# sourceMappingURL=style.css.map */

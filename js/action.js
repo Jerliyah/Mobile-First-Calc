@@ -27,13 +27,15 @@ var equals = grab('equals');
 
 // Create variables for calc screen
 var calc_screen = grab('screen');
-var btn_clear = grab('clear');
+var clear_screen = grab('clear-screen');
+var clear_history = grab('clear-history');
 
 
 
 /* Variables */
 var calc = [];
 var btn_value = '';
+var buttons_pressed = [];
 
 
 
@@ -53,8 +55,9 @@ click(times);
 click(divided);
 click(equals);
 
-// Add click event for clear button
-click(btn_clear);
+// Add click event for clear buttons
+click(clear_screen);
+click(clear_history);
 
 
 
@@ -66,9 +69,12 @@ function click(btn) {
         btn.addEventListener( 'click',  function() { calculate() } );
     }
     // Clear screen and calc array
-    else if (btn.id === 'clear') {
-        console.log('clear btn pressed');
-        btn.addEventListener( 'click', function() { clearOut() } );
+    else if (btn.id === 'clear-screen') {
+        btn.addEventListener( 'click', function() { clear_the_screen() } );
+    }
+    // Clear history of selected buttons
+    else if (btn.id === 'clear-history') {
+        btn.addEventListener( 'click', function() { clear_the_history() } );
     }
     // Simply add values to screen if numbers or operators
     else {
@@ -100,31 +106,27 @@ function add_to_calc(btn) {
     // HTML Format:<h2> ? </h2>
     var btn_value = btn.innerHTML.slice(5,6);
 
-    // // Add that value to calc array for later calculation
-    // // Convert strings to numbers
-    // if( parseInt(btn_value) ) {
-    //     var btn_num = parseInt(btn_value);
-    //     calc.push(btn_num);
-    // }
-    // // If they can't be converted (the operations), just push to calc as string of symbol
-    // else {
-    //     calc.push(btn_value);
-    // }
-
+    // Add value to calc array
     calc.push(btn_value);
     console.log(calc);
 }
 
 
 function calculate() {
+    // Join calc array to string and find answer
     var answer = eval( calc.join('') );
-    console.log(calc);
     console.log(answer);
+
+    // Show answer on calc screen
+    calc_screen.innerHTML = '<h2> ' + answer + ' </h2>';
+
+    calc = [];
+    console.log('calc emptied');
 }
 
 
-function clearOut() {
-    console.log('clearOut ran');
+function clear_the_screen() {
+    console.log('clear the screen');
 
     // Empty calc array
     calc = [];
@@ -135,5 +137,12 @@ function clearOut() {
 }
 
 
+function clear_the_history() {
+    console.log('clear the history');
 
-// Faster Way
+     calc = [];
+     buttons_pressed = [];
+
+     calc_screen.innerHTML = '<h2> History Cleared </h2>';
+     setTimeout( function(){ calc_screen.innerHTML = ''}, 1000 );
+}
