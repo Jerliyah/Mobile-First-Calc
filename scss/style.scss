@@ -108,6 +108,10 @@
 
     .btn {
         @include perfect-center-items;
+
+        &:hover {
+            background: rgba(0,0,0,0.5);
+        }
     }
 
     #num-ctn .btn {
@@ -118,6 +122,11 @@
         width: 100%;
     }
 
-    .btn:hover {
-        background: rgba(0,0,0,0.5);
+    #equals {
+        background: rgba(255,255,255,0.5);
+
+        &:hover {
+            background: rgba(255,255,255,0.8);
+            color: black;
+        }
     }
