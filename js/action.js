@@ -56,7 +56,18 @@ function click(btn) {
 }
 
 function add_to_screen(btn) {
-    screen.innerHTML += btn.innerHTML;
+    // If btn is operation, put space around it on the calc screen
+    if ( btn.classList.contains('opr') ) {
+        var no_space_html = btn.innerHTML.toString().trim();
+        var with_space_html = no_space_html.replace(/\s/g, '&nbsp;&nbsp;')
+
+        screen.innerHTML += ' ' + with_space_html + ' ';
+    }
+    // Otherwise, no spacing
+    else {
+        screen.innerHTML += btn.innerHTML;
+    }
+
 }
 
 
