@@ -75,7 +75,7 @@ function add_to_screen(btn) {
     // If btn is an operation, put space around its symbol for calc screen
     if ( btn.classList.contains('opr') ) {
         var added_space_html = btn.innerHTML.replace(/\s/g, '&nbsp;&nbsp;');
-        screen.innerHTML += ' ' + added_space_html + ' ';
+        screen.innerHTML += added_space_html;
     }
     // Otherwise, no spacing
     else {
@@ -91,24 +91,26 @@ function add_to_calc(btn) {
     // HTML Format:<h2> ? </h2>
     var btn_value = btn.innerHTML.slice(5,6);
 
-    // Add that value to calc array for later calculation
-    // Convert strings to numbers
-    if( parseInt(btn_value) ) {
-        var btn_num = parseInt(btn_value);
-        calc.push(btn_num);
-    }
-    // If they can't be converted (the operations), just push to calc as string of symbol
-    else {
-        calc.push(btn_value);
-    }
+    // // Add that value to calc array for later calculation
+    // // Convert strings to numbers
+    // if( parseInt(btn_value) ) {
+    //     var btn_num = parseInt(btn_value);
+    //     calc.push(btn_num);
+    // }
+    // // If they can't be converted (the operations), just push to calc as string of symbol
+    // else {
+    //     calc.push(btn_value);
+    // }
 
+    calc.push(btn_value);
     console.log(calc);
 }
 
 
 function calculate() {
-    var mathInput = screen.innerHTML;
-    console.log(mathInput);
+    var answer = eval( calc.join('') );
+    console.log(calc);
+    console.log(answer);
 }
 
 
