@@ -37,6 +37,7 @@ var clear_history = grab('clear-history');
 var calc = [];
 var btn_value = '';
 var buttons_pressed = [];
+var delay = 700;
 
 
 
@@ -130,6 +131,7 @@ function add_to_screen(btn) {
         calc_screen.innerHTML += btn.innerHTML;
     }
 
+    // Add a comma for every third number to the left of decimal
 }
 
 
@@ -137,6 +139,8 @@ function add_to_screen(btn) {
 function calculate() {
     // Join calc array to string and find answer
     var answer = eval( calc.join('') );
+    // Adds commas for thousands (and beyond) place
+    answer =  answer.toLocaleString();
     console.log( answer );
 
     // Show answer on calc screen
@@ -160,9 +164,9 @@ function clear_the_screen() {
     // Add clear to history
     buttons_pressed.push('clear');
 
-    // Screen shows cleared message for 1 second, then empties
+    // Screen shows cleared message for a set time, then empties
     calc_screen.innerHTML = '<h2> Cleared </h2>';
-    setTimeout( function(){ calc_screen.innerHTML = '' }, 1000 );
+    setTimeout( function(){ calc_screen.innerHTML = '' }, delay );
 }
 
 
@@ -173,5 +177,5 @@ function clear_the_history() {
      buttons_pressed = [];
 
      calc_screen.innerHTML = '<h2> History Cleared </h2>';
-     setTimeout( function(){ calc_screen.innerHTML = ''}, 1000 );
+     setTimeout( function(){ calc_screen.innerHTML = ''}, delay );
 }
